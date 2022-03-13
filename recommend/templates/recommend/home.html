@@ -1,2 +1,8 @@
-<h1>hello world</h1>
-<p>Django App</p>
+<h1>AI Santa</h1>
+<p>Twitter IDを入力してください</p>
+<form action="{%url 'home'%}" method="POST">
+    <input type="text" name="twid">
+    {% csrf_token %}
+    <button type="submit">Send</button>
+</form>
+<h3>{{best}}</h3>

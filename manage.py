@@ -2,6 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+import MeCab
 
 
 def main():
@@ -17,6 +18,21 @@ def main():
         ) from exc
     execute_from_command_line(sys.argv)
 
+def parse(text):
+   mecab = MeCab.Tagger('-Owakati')
+   mecab.parse('')
+   node = mecab.parseToNode(text)
+   word_list = list()
+   while node:
+       word = node.surface
+       word_type = node.feature.split(",")[0]
+
+       if word_type in ["名詞", "動詞", "形容詞", "副詞"]:
+           if word != "*":
+               word_list.append(word)
+               
+       node = node.next
+   return word_list
 
 if __name__ == '__main__':
     main()
