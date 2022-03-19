@@ -5,4 +5,62 @@
     {% csrf_token %}
     <button type="submit">Send</button>
 </form>
-<h3>{{best}}</h3>
+<p>レコメンドで参考にしたキーワードTop5</p>
+{% for i in reason %}
+    <div class="row">
+        {{ i }}
+    </div>
+{% endfor %}
+
+<p>AIによるレコメンドアイテム</p>
+{% for i in besturl0 %}
+    <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22"><img src="https://images-na.ssl-images-amazon.com/images/P/{{i.1}}.09.MZZZZZZZ.jpg"></a>
+{% endfor %}
+{% for i in besturl1 %}
+    <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22"><img src="https://images-na.ssl-images-amazon.com/images/P/{{i.1}}.09.MZZZZZZZ.jpg"></a>
+{% endfor %}
+{% for i in besturl2 %}
+    <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22"><img src="https://images-na.ssl-images-amazon.com/images/P/{{i.1}}.09.MZZZZZZZ.jpg"></a>
+{% endfor %}
+{% for i in besturl3 %}
+    <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22"><img src="https://images-na.ssl-images-amazon.com/images/P/{{i.1}}.09.MZZZZZZZ.jpg"></a>
+{% endfor %}
+{% for i in besturl4 %}
+    <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22"><img src="https://images-na.ssl-images-amazon.com/images/P/{{i.1}}.09.MZZZZZZZ.jpg"></a>
+{% endfor %}
+{% for i in besturl5 %}
+    <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22"><img src="https://images-na.ssl-images-amazon.com/images/P/{{i.1}}.09.MZZZZZZZ.jpg"></a>
+{% endfor %}
+{% for i in besturl6 %}
+    <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22"><img src="https://images-na.ssl-images-amazon.com/images/P/{{i.1}}.09.MZZZZZZZ.jpg"></a>
+{% endfor %}
+{% for i in besturl7 %}
+    <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22"><img src="https://images-na.ssl-images-amazon.com/images/P/{{i.1}}.09.MZZZZZZZ.jpg"></a>
+{% endfor %}
+{% for i in besturl8 %}
+    <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22"><img src="https://images-na.ssl-images-amazon.com/images/P/{{i.1}}.09.MZZZZZZZ.jpg"></a>
+{% endfor %}
+{% for i in besturl9 %}
+    <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22"><img src="https://images-na.ssl-images-amazon.com/images/P/{{i.1}}.09.MZZZZZZZ.jpg"></a>
+{% endfor %}
+{% for i in besturl10 %}
+    <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22"><img src="https://images-na.ssl-images-amazon.com/images/P/{{i.1}}.09.MZZZZZZZ.jpg"></a>
+{% endfor %}
+{% for i in besturl11 %}
+    <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22"><img src="https://images-na.ssl-images-amazon.com/images/P/{{i.1}}.09.MZZZZZZZ.jpg"></a>
+{% endfor %}
+{% for i in besturl12 %}
+    <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22"><img src="https://images-na.ssl-images-amazon.com/images/P/{{i.1}}.09.MZZZZZZZ.jpg"></a>
+{% endfor %}
+{% for i in besturl13 %}
+    <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22"><img src="https://images-na.ssl-images-amazon.com/images/P/{{i.1}}.09.MZZZZZZZ.jpg"></a>
+{% endfor %}
+{% for i in besturl14 %}
+    <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22"><img src="https://images-na.ssl-images-amazon.com/images/P/{{i.1}}.09.MZZZZZZZ.jpg"></a>
+{% endfor %}
+{% for i in besturl15 %}
+    <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22"><img src="https://images-na.ssl-images-amazon.com/images/P/{{i.1}}.09.MZZZZZZZ.jpg"></a>
+{% endfor %}
+{% for i in besturl16 %}
+    <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22"><img src="https://images-na.ssl-images-amazon.com/images/P/{{i.1}}.09.MZZZZZZZ.jpg"></a>
+{% endfor %}
