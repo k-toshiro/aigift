@@ -8,3 +8,5 @@ mecab-python3 == 1.0.4
 unidic-lite==1.0.8
 nltk==3.7
 scipy==1.8.0
+social-auth-app-django
+gensim==4.1.2

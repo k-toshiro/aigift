@@ -1,0 +1,24 @@
+{% extends "recommend/Header.html" %}
+
+{% block content_block %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>userinfo</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in user_list %}
+    <tr>
+      <td>{{ user.token }}</td>
+      <td>{{ user.name }}</td>
+    </tr>
+    {% endfor %}
+  
+  </tbody>
+</table>
+
+
+
+{% endblock %}

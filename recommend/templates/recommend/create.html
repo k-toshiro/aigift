@@ -1,0 +1,9 @@
+{% extends "recommend/Header.html" %}
+
+{% block content_block %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class='btn btn-primary' value="登録">
+  </form>
+{% endblock %}

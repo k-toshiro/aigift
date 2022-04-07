@@ -1,2 +1,0 @@
-/lightasin.csv
-/tfidffile2.mtx
