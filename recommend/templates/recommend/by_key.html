@@ -9,7 +9,7 @@
             <div class="spacer"></div>  
             <img src="{% static 'image/gifton.gif' %}">
             <button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
-          </div>
+        </div>
         <div class="hero1zone">
         <h1>AI Santa</h1>
         <p>SNSでのやり取りを入力してください</p>
@@ -26,45 +26,96 @@
         </form>
         {% if keyword %}
         <div class="row">
-            <div class="col-lg-6">
-                <p>おすすめギフトカテゴリ</p>
-                {%for k,v in rader2.items %}
-                <div>
-                    {{k}}: おすすめ度{{v}}
+            <div class="row">
+                <div class="col-lg-6">
+                <div class="field">
+                    <div class="box">
+                        <div style="position:relative; width:100%; height:100%;">
+                            <canvas id="chart" width="100%" height="100%"></canvas>
+                            <!-- スコアチャートを表示するためのスクリプト-->
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"></script>
+                            <script src="https://unpkg.com/chartjs-plugin-colorschemes"></script>
+                            <script>
+                              var item_= JSON.parse('{{items | safe}}');
+                              var item0  = item_.data0;
+                              var item1 =  item_.data1;
+                              var item2   = item_.data2;
+                              var item3 =  item_.data3;
+                              var item4   = item_.data4;
+                              var val0  = JSON.parse("{{vals.data0 | safe}}");
+                              var val1 = JSON.parse("{{vals.data1 | safe}}");
+                              var val2   = JSON.parse("{{vals.data2 | safe}}");
+                              var val3 = JSON.parse("{{vals.data3 | safe}}");
+                              var val4   = JSON.parse("{{vals.data4 | safe}}");
+                              console.log(item4);
+                            </script>
+                            <script>
+    // 各軸のラベル
+    var rlabels = [item0,item1,item2,item3,item4];
+    
+    // １つ目の系列の情報を設定
+    var series01name      = "ほしそうなもの";             // 系列１の名前
+    var series01data      = [val0, val1, val2,val3,val4]; // 系列１データ
+    var series01bgcolor   = "rgba(255, 45, 132, 0.2)";            // 系列１の塗りつぶし色
+    var series01linecolor = "rgba(255, 45, 132, 1.0)";            // 系列１の線の色
+    
+    // グラフ縦軸の最大／最小／目盛りの間隔を設定
+    var rmax  = 4;  // グラフ縦軸の最大
+    var rmin  = 0;  // グラフ縦軸の最小
+    var rstep = 1;  // グラフ縦軸の目盛り線を引く間隔
+    
+    var ctx = document.getElementById("chart").getContext("2d");
+    
+    var chart = new Chart(ctx, {
+        type: "radar",
+        data: {
+            labels: rlabels,
+            datasets:[
+                {
+                label:           series01name,
+                data:            series01data,
+                backgroundColor: series01bgcolor,
+                borderColor:     series01linecolor,
+                borderWidth:     1,
+                }, 
+            ]
+        },
+        options: {
+            scales: {
+                r: {
+                    display:      true,
+                    suggestedMax: rmax,
+                    suggestedMin: rmin,
+                    ticks: {
+                    stepSize: rstep,
+                    },
+                    grid: {
+                        color: "white",
+                      },
+                    pointLabels:{
+                        color:"white",
+                     },
+                    
+                },
+            },
+        }
+    });
+                            </script>
+                        </div>
+                    </div>
                 </div>
-                {% endfor %}
-        </div>
-        <div class="col-lg-6">
-                <p>レコメンドで参考にしたキーワードTop5</p>
-                現在廃止中
-        </div>
-        </div>
-        <div class="field">
-            <div class="box">
-                <div style="position:relative; width:500px; height:500px;">
-                    <canvas id="chart" width="400px" height="600px"></canvas>
-                    <!-- スコアチャートを表示するためのスクリプト-->
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"></script>
-                    <script src="https://unpkg.com/chartjs-plugin-colorschemes"></script>
-                    <script>
-                          var item_= JSON.parse('{{items | safe}}');
-                          var item0  = item_.data0;
-                          var item1 =  item_.data1;
-                          var item2   = item_.data2;
-                          var item3 =  item_.data3;
-                          var item4   = item_.data4;
-                          var val0  = JSON.parse("{{vals.data0 | safe}}");
-                          var val1 = JSON.parse("{{vals.data1 | safe}}");
-                          var val2   = JSON.parse("{{vals.data2 | safe}}");
-                          var val3 = JSON.parse("{{vals.data3 | safe}}");
-                          var val4   = JSON.parse("{{vals.data4 | safe}}");
-                    </script>
-                    <script src="{% static 'js/rader2.js' %}"></script>
                 </div>
-            </div>
-        </div>
+                <div class="col-lg-6" style="margin: auto; padding-left: 10%;">
+                  <p>おすすめギフトカテゴリ</p>
+                  {%for k,v in rader2.items %}
+                  <div>
+                      {{k}}: おすすめ度{{v}}
+                  </div>
+                  {% endfor %}
+                </div>
+                </div>
         {% endif %}
-        <div class="spacer"></div>  
+        <div class="spacer"></div> 
         <p>AIによるレコメンドアイテム</p>
         <div class="clickrecord">
             <div class="card-group">
@@ -304,6 +355,126 @@
                 <div class="text-overflow-lines">
                     <p class="card-text">{{i.0}}</p>
                 </div>
+                </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% for i in besturl20 %}
+            <div class="card h-100" style="color:black; font-size: smaller; border: 0ch;">
+                <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22" target='_blank' id='{{i.1}}'>
+                <img src="{{i.2}}" class="card-img-top" alt="..." width="50">
+                <div class="card-body">
+                  <div class="text-overflow-lines">
+                    <p class="card-text">{{i.0}}</p>
+                  </div>
+                </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% for i in besturl21 %}
+            <div class="card h-100" style="color:black; font-size: smaller; border: 0ch;">
+                <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22" target='_blank' id='{{i.1}}'>
+                <img src="{{i.2}}" class="card-img-top" alt="..." width="50">
+                <div class="card-body">
+                  <div class="text-overflow-lines">
+                    <p class="card-text">{{i.0}}</p>
+                  </div>
+                </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% for i in besturl22 %}
+            <div class="card h-100" style="color:black; font-size: smaller; border: 0ch;">
+                <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22" target='_blank' id='{{i.1}}'>
+                <img src="{{i.2}}" class="card-img-top" alt="..." width="50">
+                <div class="card-body">
+                  <div class="text-overflow-lines">
+                    <p class="card-text">{{i.0}}</p>
+                  </div>
+                </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% for i in besturl23 %}
+            <div class="card h-100" style="color:black; font-size: smaller; border: 0ch;">
+                <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22" target='_blank' id='{{i.1}}'>
+                <img src="{{i.2}}" class="card-img-top" alt="..." width="50">
+                <div class="card-body">
+                  <div class="text-overflow-lines">
+                    <p class="card-text">{{i.0}}</p>
+                  </div>
+                </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% for i in besturl24 %}
+            <div class="card h-100" style="color:black; font-size: smaller; border: 0ch;">
+                <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22" target='_blank' id='{{i.1}}'>
+                <img src="{{i.2}}" class="card-img-top" alt="..." width="50">
+                <div class="card-body">
+                  <div class="text-overflow-lines">
+                    <p class="card-text">{{i.0}}</p>
+                  </div>
+                </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% for i in besturl25 %}
+            <div class="card h-100" style="color:black; font-size: smaller; border: 0ch;">
+                <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22" target='_blank' id='{{i.1}}'>
+                <img src="{{i.2}}" class="card-img-top" alt="..." width="50">
+                <div class="card-body">
+                  <div class="text-overflow-lines">
+                    <p class="card-text">{{i.0}}</p>
+                  </div>
+                </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% for i in besturl26 %}
+            <div class="card h-100" style="color:black; font-size: smaller; border: 0ch;">
+                <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22" target='_blank' id='{{i.1}}'>
+                <img src="{{i.2}}" class="card-img-top" alt="..." width="50">
+                <div class="card-body">
+                  <div class="text-overflow-lines">
+                    <p class="card-text">{{i.0}}</p>
+                  </div>
+                </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% for i in besturl27 %}
+            <div class="card h-100" style="color:black; font-size: smaller; border: 0ch;">
+                <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22" target='_blank' id='{{i.1}}'>
+                <img src="{{i.2}}" class="card-img-top" alt="..." width="50">
+                <div class="card-body">
+                  <div class="text-overflow-lines">
+                    <p class="card-text">{{i.0}}</p>
+                  </div>
+                </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% for i in besturl28 %}
+            <div class="card h-100" style="color:black; font-size: smaller; border: 0ch;">
+                <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22" target='_blank' id='{{i.1}}'>
+                <img src="{{i.2}}" class="card-img-top" alt="..." width="50">
+                <div class="card-body">
+                  <div class="text-overflow-lines">
+                    <p class="card-text">{{i.0}}</p>
+                  </div>
+                </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% for i in besturl29 %}
+            <div class="card h-100" style="color:black; font-size: smaller; border: 0ch;">
+                <a href="https://www.amazon.co.jp/dp/{{i.1}}/ref=nosim?tag=kamebusiness1-22" target='_blank' id='{{i.1}}'>
+                <img src="{{i.2}}" class="card-img-top" alt="..." width="50">
+                <div class="card-body">
+                  <div class="text-overflow-lines">
+                    <p class="card-text">{{i.0}}</p>
+                  </div>
                 </div>
                 </a>
             </div>

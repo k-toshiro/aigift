@@ -1,9 +1,9 @@
 // 各軸のラベル
-var rlabels = ["ewc","cew","ecw","wecr","wcvr","rvr"];
+var rlabels = [item0,item1,item2,item3,item4];
 
 // １つ目の系列の情報を設定
 var series01name      = "ほしそうなもの";             // 系列１の名前
-var series01data      = [1,2,3,4,5]; // 系列１データ
+var series01data      = [val0, val1, val2,val3,val4]; // 系列１データ
 var series01bgcolor   = "rgba(255, 45, 132, 0.2)";            // 系列１の塗りつぶし色
 var series01linecolor = "rgba(255, 45, 132, 1.0)";            // 系列１の線の色
 

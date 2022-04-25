@@ -14,7 +14,7 @@
             <div class="row no-gutters bg-light position-relative" style="background-color:white; margin:0.01%;">
                <div class="col-md-6 mb-md-0 p-md-4">
 
-                 <img src="{% static "image/intro.png" %}" width="100%">
+                 <img src="https://i.imgur.com/0shvyqL.png" width="100%">
                </div>
                <div class="col-md-6 position-static p-4 pl-md-0" style="color:rgb(0, 0, 0)">
                  <h5 class="mt-0">ツイートからおすすめギフトを探す</h5>
@@ -33,13 +33,12 @@
             <p>Twitter診断にはログインが必要です。あなたはログインしていません</p>
             <button type="button" class="btn btn-info" onclick="location.href='{% url 'social:begin' 'twitter' %}'">Twitterでログインして利用</button>
             <div class="spacer"></div> 
-            <a href="{% url 'recommend:by_keyword' %}" class="link-info">ログインしなくても，こちらから他のSNSでの相手の投稿ややり取りを元に機能をご利用いただけます</a>
          </div>
          <div class="col-lg-6">
          <div class="alert alert-success alert-dismissible fade show" role="alert" id="btop">
-            <strong>ご利用ありがとうございます!</strong> SNSでのやり取りを入力してください
+            <strong>ご利用ありがとうございます!</strong><br/> <a href="{% url 'recommend:by_keyword' %}" class="link-info">ログインしなくても，こちらから他のSNSでの投稿ややり取りをもとにして，その人のほしそうなものを診断する機能をお試しいただけます．</a>
             <div class="spacer"></div>  
-            <img src="{% static 'image/intro2.png' %}" width="200px">
+            <img src="https://i.imgur.com/l8Tu2Ii.png" width="200px">
             <button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
          </div>
          </div>
