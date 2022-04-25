@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'recommend'
+    'recommend',
+    'social_django', #haya1010追加
 ]
 
 MIDDLEWARE = [
@@ -63,6 +65,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',  #haya1010追加
+                'social_django.context_processors.login_redirect', #haya1010追加
             ],
         },
     },
@@ -124,7 +128,21 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+AUTHENTICATION_BACKENDS = [
+ 'social_core.backends.twitter.TwitterOAuth',  # haya1010追加
+ 'django.contrib.auth.backends.ModelBackend',  # haya1010追加
+]
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/' #haya1010追加
+
+SOCIAL_AUTH_TWITTER_KEY = 'uuG1jzBJAJ0C2SuSDAGsgvDlu'
+SOCIAL_AUTH_TWITTER_SECRET = 'T7avTm0YbFvthT054mpSfmxpbzTDTjVNhLrSFgQL8lNv1d1tFS'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]

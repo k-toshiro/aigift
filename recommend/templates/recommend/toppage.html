@@ -1,0 +1,70 @@
+{% extends "recommend/Header.html" %}
+{% load static %}
+{% block content_block %}
+<div class="catchcontent">
+   <div class='container'>
+      <div class="hero1zone">
+         {% if request.user.is_authenticated %}
+         <h1 style="color:white;">Santa AI</h1>
+         <p style="color:white;">ギフト選びをもっと楽しく</p>
+         <p style="color:white;">ツイートから,その人におすすめのプレゼントをAIが分析します</p>
+         <div class="spacer"></div>
+            <p>あなたはログインしています ({{ user.access_token.screen_name }}さん)</p>
+            <div class="spacer"></div>
+            <div class="row no-gutters bg-light position-relative" style="background-color:white; margin:0.01%;">
+               <div class="col-md-6 mb-md-0 p-md-4">
+
+                 <img src="https://i.imgur.com/0shvyqL.png" width="100%">
+               </div>
+               <div class="col-md-6 position-static p-4 pl-md-0" style="color:rgb(0, 0, 0)">
+                 <h5 class="mt-0">ツイートからおすすめギフトを探す</h5>
+                 <p>twitterIDを入力すると,その人がほしいと思っているものをAIが予想します。その人が喜びそうなギフトのカテゴリも提示します。</p>
+                 <a href="{% url 'recommend:home' %}" class="stretched-link">試してみる</a>
+               </div>
+             </div>  
+            <div class="spacer"></div>           
+         {% else %}
+         <div class="row">
+         <div class="col-lg-6">
+         <h1 style="color:white;">Santa AI</h1>
+         <p style="color:white;">ギフト選びをもっと楽しく</p>
+         <p style="color:white;">ツイートから,その人におすすめのプレゼントをAIが分析します</p>
+         <div class="spacer"></div>
+            <p>Twitter診断にはログインが必要です。あなたはログインしていません</p>
+            <button type="button" class="btn btn-info" onclick="location.href='{% url 'social:begin' 'twitter' %}'">Twitterでログインして利用</button>
+            <div class="spacer"></div> 
+         </div>
+         <div class="col-lg-6">
+         <div class="alert alert-success alert-dismissible fade show" role="alert" id="btop">
+            <strong>ご利用ありがとうございます!</strong><br/> <a href="{% url 'recommend:by_keyword' %}" class="link-info">ログインしなくても，こちらから他のSNSでの投稿ややり取りをもとにして，その人のほしそうなものを診断する機能をお試しいただけます．</a>
+            <div class="spacer"></div>  
+            <img src="https://i.imgur.com/l8Tu2Ii.png" width="200px">
+            <button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
+         </div>
+         </div>
+         {% endif %}
+         <div class="spacer"></div>
+         <br>
+         {% if uselog %}
+         <p>最近チェックした商品</p>
+         <div class="board">
+         {% for each_uselog in uselog %}
+         <a href="https://www.amazon.co.jp/dp/{{each_uselog.clicked_item}}/ref=nosim?tag=kamebusiness1-22" target='_blank' id='{{each_uselog.clicked_item}}'><img src="https://images-na.ssl-images-amazon.com/images/P/{{each_uselog.clicked_item}}.09.MZZZZZZZ.jpg"></a>
+         {% endfor %}
+         </div>
+         {% endif %}
+         <div class="spacer"></div> 
+         {% if request.user.is_authenticated %}
+            <a href="/logout"><button type="button">ログアウト</button></a>
+         {% endif %}
+         </div>
+      </div>
+   </div>
+</div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+{% endblock %}
+

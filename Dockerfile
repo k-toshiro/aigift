@@ -13,14 +13,6 @@ RUN apt-get -y update && \
   apt-get install -y file && \
   apt-get install -y sudo
 
-# mecab-ipadic-NEologdのインストール
-RUN git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git && \
-  cd mecab-ipadic-neologd && \
-  ./bin/install-mecab-ipadic-neologd -n -y && \
-  echo dicdir = `mecab-config --dicdir`"/mecab-ipadic-neologd">/etc/mecabrc && \
-  sudo cp /etc/mecabrc /usr/local/etc && \
-  cd
-
 RUN mkdir /code
 WORKDIR /code
 ADD requirements.txt /code/

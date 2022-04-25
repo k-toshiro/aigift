@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<style>
+		.navleft{
+			padding-left: 5%;
+			padding-top: 5px;
+		}
+		.navcenter{
+			margin-left: auto;
+    		margin-right: auto;
+			text-align: center;
+		}
+		.catchcontent{
+			background: linear-gradient(to top, rgba(217, 175, 217, 0.7) 0%, rgba(151, 217, 225, 0.7) 100%),url("https://i.imgur.com/ADAa3m6.jpg");
+			min-height: 540px;
+		}
+		
+		@media (max-width: 400px) {
+		/* 横幅が320px以下の場合に適用するスタイル */
+		.hero1zone{
+			padding:10px;
+			width: 100%; 
+			background:rgba(0, 0, 0, 0.3);
+			min-height: 540px;
+			color:white;
+		}}
+		@media (min-width: 400px) {
+		.hero1zone{
+			padding:50px;
+			background:rgba(0, 0, 0, 0.5);
+			min-height: 540px;
+			color:white;
+		}}
+		.spacer{
+			margin-top:30px;
+		}
+		.clickrecord{
+			background-color: white;
+		}
+		.board{
+			background-color: white;
+		}
+		.text-overflow-lines {
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 2;
+			overflow: hidden;
+		}
+		@media (min-width: 400px) {
+		.card {
+			min-width: 120px;
+			max-width: 170px;
+			margin-bottom: 10px !important;
+			margin: auto;
+		}}
+		@media (max-width: 400px) {
+		.card {
+			min-width: 120px;
+			max-width: 170px;
+			margin-bottom: 10px !important;
+			margin: auto;
+		}}
+
+		.sidebar {
+			min-height: 500px;
+		}
+	</style>
+
+	<title></title>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="navleft">
+		<img src="https://i.imgur.com/V31GRiO.png" width="200">
+	    </div>
+		<div class="navcenter">
+      <div class="navbar-nav">
+		
+        <!-- urls.pyで定義したアプリ名 + urlpatternのpathで定めたnameを指定し、リンクで遷移できるようにする -->
+		
+			<a class="navbar-brand" href="{% url 'recommend:toppage' %}">Top</a>
+			{% if request.user.is_authenticated %}
+			<a class="navbar-brand" href="{% url 'recommend:home' %}">Twitter IDでギフト探し</a>
+			<a class="navbar-brand" href="{% url 'recommend:by_keyword' %}">SNSの文章でギフト探し</a>
+			{% else %}
+			<a class="navbar-brand" href="{% url 'recommend:by_keyword' %}">SNSの文章でギフト探し</a>
+			{% endif %}
+		</div>
+      </div>
+    </nav>
+		{% block content_block %}
+		{% endblock %}
+</body>
+</html>

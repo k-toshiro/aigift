@@ -19,7 +19,7 @@ def main():
     execute_from_command_line(sys.argv)
 
 def parse(text):
-   mecab = MeCab.Tagger('-Owakati')
+   mecab = MeCab.Tagger('-d /usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd -O chasen')
    mecab.parse('')
    node = mecab.parseToNode(text)
    word_list = list()
