@@ -389,14 +389,16 @@ def postdata(request):
         userid = user.extra_data['access_token']['screen_name']
         targetid = dic.get('targetid')
         clicked_item = dic.get('clicked_item')
+        imgsource = dic.get('imgsource')
 
         print('-----------CHECK==========')
-        print(userid, targetid, clicked_item)
+        print(userid, targetid, clicked_item,imgsource)
 
         uselog = models.Uselog.objects.create(
             userid = userid,
             targetid = targetid,
-            clicked_item = clicked_item
+            clicked_item = clicked_item,
+            imgsource = imgsource
             )
         uselog.save()
 

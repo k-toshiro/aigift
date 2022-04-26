@@ -49,7 +49,7 @@
          <p>最近チェックした商品</p>
          <div class="board">
          {% for each_uselog in uselog %}
-         <a href="https://www.amazon.co.jp/dp/{{each_uselog.clicked_item}}/ref=nosim?tag=kamebusiness1-22" target='_blank' id='{{each_uselog.clicked_item}}'><img src="https://images-na.ssl-images-amazon.com/images/P/{{each_uselog.clicked_item}}.09.MZZZZZZZ.jpg"></a>
+         <a href="https://www.amazon.co.jp/dp/{{each_uselog.clicked_item}}/ref=nosim?tag=kamebusiness1-22" target='_blank' id='{{each_uselog.clicked_item}}'><img src="{{each_uselog.imgsource}}"></a>
          {% endfor %}
          </div>
          {% endif %}

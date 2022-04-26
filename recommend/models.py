@@ -11,4 +11,5 @@ class Uselog(models.Model):
 	userid = models.CharField(max_length=32)
 	targetid = models.CharField(max_length=32)
 	clicked_item = models.CharField(max_length=64)
+	imgsource = models.CharField(max_length=64)
 	# dt = models.DateTimeField(default=timezone.now)
