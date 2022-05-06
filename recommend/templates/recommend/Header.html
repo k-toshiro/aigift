@@ -21,16 +21,16 @@
 			min-height: 540px;
 		}
 		
-		@media (max-width: 400px) {
+		@media (max-width: 540px) {
 		/* 横幅が320px以下の場合に適用するスタイル */
 		.hero1zone{
-			padding:10px;
+			padding:5px;
 			width: 100%; 
 			background:rgba(0, 0, 0, 0.3);
 			min-height: 540px;
 			color:white;
 		}}
-		@media (min-width: 400px) {
+		@media (min-width: 540px) {
 		.hero1zone{
 			padding:50px;
 			background:rgba(0, 0, 0, 0.5);
@@ -52,21 +52,28 @@
 			-webkit-line-clamp: 2;
 			overflow: hidden;
 		}
-		@media (min-width: 400px) {
+		@media (min-width: 540px) {
 		.card {
 			min-width: 120px;
 			max-width: 170px;
 			margin-bottom: 10px !important;
 			margin: auto;
 		}}
-		@media (max-width: 400px) {
+		@media (max-width: 540px) {
 		.card {
-			min-width: 120px;
-			max-width: 170px;
+			min-width: 60px;
+			max-width: 110px;
 			margin-bottom: 10px !important;
 			margin: auto;
+			padding:0;
 		}}
-
+		.clickrecord{
+			padding:0;
+		}
+		.card-group{
+			display:flex;
+			flex-wrap: wrap;
+		}
 		.sidebar {
 			min-height: 500px;
 		}
