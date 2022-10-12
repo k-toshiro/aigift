@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+env=environ.Env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-!eo&*+#rba5h0#hk8hb)kkuf79%3k2&&dqkb8*i7k(fs)*$tmc'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -80,14 +82,15 @@ WSGI_APPLICATION = 'aigift.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'root',
-        'PASSWORD': 'password',
-        'HOST': 'db',
-        'PORT': 5432,
+        'ENGINE': os.environ['POSTGRES_ENGINE'],
+        'NAME': os.environ['POSTGRES_NAME'],
+        'USER': os.environ['POSTGRES_USER'],
+        'PASSWORD': os.environ['POSTGRES_PASSWORD'],
+        'HOST': os.environ['POSTGRES_HOST'],
+        'PORT': os.environ['POSTGRES_PORT'],
     }
 }
+
 
 
 # Password validation
@@ -135,8 +138,8 @@ AUTHENTICATION_BACKENDS = [
 
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/' #haya1010追加
 
-SOCIAL_AUTH_TWITTER_KEY = 'uuG1jzBJAJ0C2SuSDAGsgvDlu'
-SOCIAL_AUTH_TWITTER_SECRET = 'T7avTm0YbFvthT054mpSfmxpbzTDTjVNhLrSFgQL8lNv1d1tFS'
+SOCIAL_AUTH_TWITTER_KEY = env('SOCIAL_AUTH_TWITTER_KEY')
+SOCIAL_AUTH_TWITTER_SECRET = env('SOCIAL_AUTH_TWITTER_SECRET')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
